@@ -1,16 +1,24 @@
 package main;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 
 public class Renderer {
 	public static void render(Graphics g){
+				
 		int size = 4;
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.drawOval((int)Update.ORIGIN.x-5, (int)Update.ORIGIN.y-5, 10,10);
-		g2d.drawOval((int)(Update.ORIGIN.x-Update.ORIGIN_RADIUS), (int)(Update.ORIGIN.y-Update.ORIGIN_RADIUS),(int)(Update.ORIGIN_RADIUS*2),(int)(Update.ORIGIN_RADIUS*2));
-				
+		
+		int stroke = 6;
+		g2d.setColor(Color.black);
+		g2d.fillRect((int)Update.ORIGIN.x-stroke/2,Update.OFFSET + Update.HANDLE_SIZE,stroke,Update.OFFSET + Update.STICK_SIZE + Update.HANDLE_SIZE);
+		g2d.setColor(Color.red);
+		g2d.fillRect((int)Update.ORIGIN.x-stroke/2,Update.OFFSET,stroke, Update.HANDLE_SIZE);
+		g2d.fillOval((int)Update.ORIGIN.x-5, (int)Update.ORIGIN.y-5, 10,10);
+		
 		g2d.fillOval((int)(Update.bezA.p1.vector.x - size), (int)(Update.bezA.p1.vector.y - size),size*2,size*2);
 		g2d.fillOval((int)(Update.bezA.p2.vector.x - size), (int)(Update.bezA.p2.vector.y - size),size*2,size*2);
 		g2d.fillOval((int)(Update.bezA.p3.vector.x - size), (int)(Update.bezA.p3.vector.y - size),size*2,size*2);
@@ -51,5 +59,9 @@ public class Renderer {
 				g2d.fillOval((int)(vec.x - size/2), (int)(vec.y - size/2),size,size);
 			}i++;
 		}
+		g2d.setStroke(new BasicStroke(1));
+		g2d.drawArc((int)Update.ORIGIN.x-Update.ORIGIN_RADIUS, (int)Update.ORIGIN.y-Update.ORIGIN_RADIUS, Update.ORIGIN_RADIUS*2, Update.ORIGIN_RADIUS*2, (int)(270-(Update.COVERAGE_RADIANS-Update.OFFEST_RADIANS/2)*(180/Math.PI)), (int)((Update.COVERAGE_RADIANS)*(360/Math.PI)));
+		g2d.setStroke(new BasicStroke(1));
+
 	}
 }

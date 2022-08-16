@@ -25,7 +25,7 @@ public class Controller {
 	    frame.setLocationRelativeTo(null);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);
-		new Clock();
+	  	new Clock();
 	}
 
 }
